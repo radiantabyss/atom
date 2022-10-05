@@ -1,0 +1,44 @@
+{
+  "_from": "https://www.atom.io/api/packages/atom-ignore/versions/0.2.0/tarball",
+  "_id": "atom-ignore@0.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-OC8E2u8DAVUcIODPURC360Sqw9Q9iX4jWWcsuu/GgcH+naj04y+vERxqiREKkbG97000rhGnUzlkSDCdM3q45A==",
+  "_location": "/atom-ignore",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/atom-ignore/versions/0.2.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/atom-ignore/versions/0.2.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/atom-ignore/versions/0.2.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/atom-ignore/versions/0.2.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/atom-ignore/versions/0.2.0/tarball",
+  "_shasum": "f0c9db12b0f8fdfd04de616c098733df779f0eaa",
+  "_spec": "https://www.atom.io/api/packages/atom-ignore/versions/0.2.0/tarball",
+  "_where": "C:\\Users\\Robert\\AppData\\Local\\Temp\\apm-install-dir-202116-16596-1h18l2x.h3kk",
+  "bugs": {
+    "url": "https://github.com/jacquescrocker/atom-ignore/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "ignore": "^3.1.2"
+  },
+  "deprecated": false,
+  "description": "Use a .atomignore file to hide files & folder in tree view",
+  "engines": {
+    "atom": ">=0.199.0"
+  },
+  "homepage": "https://github.com/jacquescrocker/atom-ignore#readme",
+  "license": "MIT",
+  "main": "./lib/atom-ignore",
+  "name": "atom-ignore",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacquescrocker/atom-ignore.git"
+  },
+  "version": "0.2.0"
+}

@@ -1,0 +1,20 @@
+.syntax--source.syntax--css {
+  // highlight properties/values if they are supported
+  .syntax--property-name,
+  .syntax--property-value {
+    color: @white;
+    &.syntax--support {
+      color: @vs-sky-blue;
+    }
+  }
+
+  .syntax--variable.syntax--other {
+    color: @vs-sky-blue;
+  }
+
+  .syntax--entity {
+    &.syntax--other.syntax--attribute-name {
+      color: @vs-light-brown;
+    }
+  }
+}

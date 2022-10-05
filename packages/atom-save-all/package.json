@@ -1,0 +1,45 @@
+{
+  "_from": "https://www.atom.io/api/packages/atom-save-all/versions/0.4.1/tarball",
+  "_id": "atom-save-all@0.4.1",
+  "_inBundle": false,
+  "_integrity": "sha512-plgIBtcZ0I8KJZbRnnEh7hWRqg0zA2hBownz9sk0Gi2AGVg2DrcVesk6bd+GMIVtpCcCcKhL9ZuBO7P22E/4Fw==",
+  "_location": "/atom-save-all",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/atom-save-all/versions/0.4.1/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/atom-save-all/versions/0.4.1/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/atom-save-all/versions/0.4.1/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/atom-save-all/versions/0.4.1/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/atom-save-all/versions/0.4.1/tarball",
+  "_shasum": "89b14713168fe230c7fa597d20e3db6abe1b61b2",
+  "_spec": "https://www.atom.io/api/packages/atom-save-all/versions/0.4.1/tarball",
+  "_where": "C:\\Users\\Cic\\AppData\\Local\\Temp\\apm-install-dir-11946-18500-sl3x5i.kwk4",
+  "activationCommands": {
+    "atom-workspace": "atom-save-all:saveAll"
+  },
+  "bugs": {
+    "url": "https://github.com/BrownBear2/atom-save-all/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Save all modified paneItems on CTRL-s",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/BrownBear2/atom-save-all#readme",
+  "license": "MIT",
+  "main": "./lib/atom-save-all",
+  "name": "atom-save-all",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrownBear2/atom-save-all.git"
+  },
+  "version": "0.4.1"
+}

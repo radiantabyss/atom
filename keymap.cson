@@ -1,0 +1,19 @@
+'atom-text-editor':
+    'ctrl-d': 'editor:duplicate-lines'
+    'ctrl-shift-d': 'find-and-replace:select-next'
+    'ctrl-shift-s': 'atom-save-all:saveAll'
+    'alt-shift-f': 'atom-beautify:beautify-editor'
+    'ctrl-3': 'custom:get-path'
+
+'body':
+    'ctrl-s': 'core:save'
+
+'atom-workspace':
+    'ctrl-n': 'advanced-open-file:toggle'
+
+'atom-workspace atom-text-editor:not([mini])':
+    'ctrl-q': 'editor:toggle-line-comments'
+    'ctrl-alt-1': 'editor:fold-at-indent-level-1'
+    'ctrl-alt-2': 'editor:fold-at-indent-level-2'
+    'ctrl-alt-3': 'editor:fold-at-indent-level-3'
+    'ctrl-alt-`': 'editor:unfold-all'

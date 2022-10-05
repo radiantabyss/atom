@@ -1,0 +1,11 @@
+.apm
+.git-history
+.node-gyp
+blob-store
+compile-cache
+git-time-machine
+local-history
+recovery
+split-diff
+.atom-socket-secret-Robert-1.56.0
+.atom-socket-secret-Robert-1.60.0

@@ -1,0 +1,45 @@
+{
+  "_from": "https://www.atom.io/api/packages/vivid-syntax/versions/2.1.0/tarball",
+  "_id": "vivid-syntax@2.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-gLV3DI8Tjf40ECDTfrBxtttlPiEfOs+pa1oaVZYCXu9L4PfpG/+f/ei5xxWU6wIsb+sEN+UmbEV6kNzeqf4gbA==",
+  "_location": "/vivid-syntax",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/vivid-syntax/versions/2.1.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/vivid-syntax/versions/2.1.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/vivid-syntax/versions/2.1.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/vivid-syntax/versions/2.1.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/vivid-syntax/versions/2.1.0/tarball",
+  "_shasum": "9fa9e84443770b72959875bfa948d21df817c5d4",
+  "_spec": "https://www.atom.io/api/packages/vivid-syntax/versions/2.1.0/tarball",
+  "_where": "C:\\Users\\Cic\\AppData\\Local\\Temp\\apm-install-dir-11946-15412-1sefcl.v5uu9",
+  "bugs": {
+    "url": "https://github.com/nschneid/vivid-syntax/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A syntax theme based on One Dark, but with different colors",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/nschneid/vivid-syntax#readme",
+  "keywords": [
+    "dark",
+    "syntax"
+  ],
+  "license": "MIT",
+  "name": "vivid-syntax",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nschneid/vivid-syntax.git"
+  },
+  "theme": "syntax",
+  "version": "2.1.0"
+}

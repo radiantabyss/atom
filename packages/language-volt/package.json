@@ -1,0 +1,40 @@
+{
+  "_from": "https://www.atom.io/api/packages/language-volt/versions/0.2.2/tarball",
+  "_id": "language-volt@0.2.2",
+  "_inBundle": false,
+  "_integrity": "sha512-7G1wctDvaVDXG1BMEVijFL3oFX+gvEvOdIFara71XSKNKFEkMZgcSiKcWgf+eQYjpitndG59+NFmaMP7b90lwA==",
+  "_location": "/language-volt",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/language-volt/versions/0.2.2/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/language-volt/versions/0.2.2/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/language-volt/versions/0.2.2/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/language-volt/versions/0.2.2/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/language-volt/versions/0.2.2/tarball",
+  "_shasum": "324eeb32d0c3c2d3b74e4ec2a1b940cada34aaec",
+  "_spec": "https://www.atom.io/api/packages/language-volt/versions/0.2.2/tarball",
+  "_where": "C:\\Users\\Cic\\AppData\\Local\\Temp\\apm-install-dir-12026-20328-b0ttd2.7bbrb",
+  "bugs": {
+    "url": "https://github.com/nyaaao/language-volt/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Syntax highlighting for Phalcon's Volt templating engine",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/nyaaao/language-volt#readme",
+  "license": "MIT",
+  "name": "language-volt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyaaao/language-volt.git"
+  },
+  "version": "0.2.2"
+}

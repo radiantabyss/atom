@@ -1,0 +1,45 @@
+{
+  "_from": "https://www.atom.io/api/packages/vsc-dark-syntax/versions/0.0.3/tarball",
+  "_id": "vsc-dark-syntax@0.0.3",
+  "_inBundle": false,
+  "_integrity": "sha512-u76O5n3lA0/efzWqxGyZ6AS0DXLghdNDWRoWldCP5Xh0g3vhXIRjXqf3SfT/yexN/rXyBzSA31Ncam8KxyDPDw==",
+  "_location": "/vsc-dark-syntax",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/vsc-dark-syntax/versions/0.0.3/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/vsc-dark-syntax/versions/0.0.3/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/vsc-dark-syntax/versions/0.0.3/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/vsc-dark-syntax/versions/0.0.3/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/vsc-dark-syntax/versions/0.0.3/tarball",
+  "_shasum": "cb66f2da657eef9b0e5e0a2aa89182b1c25b5f99",
+  "_spec": "https://www.atom.io/api/packages/vsc-dark-syntax/versions/0.0.3/tarball",
+  "_where": "C:\\Users\\Cic\\AppData\\Local\\Temp\\apm-install-dir-11946-16204-1szwnzw.zcofi",
+  "bugs": {
+    "url": "https://github.com/ryanolsonx/vs-dark-syntax/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A dark syntax theme based on Visual Studio dark",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/ryanolsonx/vs-dark-syntax#readme",
+  "keywords": [
+    "dark",
+    "syntax"
+  ],
+  "license": "GPLv3",
+  "name": "vsc-dark-syntax",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanolsonx/vs-dark-syntax.git"
+  },
+  "theme": "syntax",
+  "version": "0.0.3"
+}

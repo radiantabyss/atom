@@ -1,0 +1,60 @@
+{
+  "_from": "https://www.atom.io/api/packages/foldername-tabs/versions/0.2.4/tarball",
+  "_id": "foldername-tabs@0.2.4",
+  "_inBundle": false,
+  "_integrity": "sha512-fFlbLgA1ilMEO4OTE7XrSHJo+dJxyVLHlvyeq11NHNUzSgScB605jIbie31pfvSrRn7xPFy9QqvuilqY+8S9MA==",
+  "_location": "/foldername-tabs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/foldername-tabs/versions/0.2.4/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/foldername-tabs/versions/0.2.4/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/foldername-tabs/versions/0.2.4/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/foldername-tabs/versions/0.2.4/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/foldername-tabs/versions/0.2.4/tarball",
+  "_shasum": "3ec707fa0cd731a65108ee3ff9ca946db88ac27a",
+  "_spec": "https://www.atom.io/api/packages/foldername-tabs/versions/0.2.4/tarball",
+  "_where": "C:\\Users\\Robert\\AppData\\Local\\Temp\\apm-install-dir-2021430-27224-1iijb4h.wm0p",
+  "bugs": {
+    "url": "https://github.com/paulpflug/foldername-tabs/issues"
+  },
+  "bundleDependencies": false,
+  "consumedServices": {
+    "autoreload": {
+      "versions": {
+        "^0.0.1": "consumeAutoreload"
+      }
+    },
+    "debug": {
+      "versions": {
+        "^0.0.1": "consumeDebug"
+      }
+    }
+  },
+  "dependencies": {
+    "abbreviate": "~0.0.3"
+  },
+  "deprecated": false,
+  "description": "Adds foldernames to tabs..",
+  "engines": {
+    "atom": ">=1.8.0"
+  },
+  "homepage": "https://github.com/paulpflug/foldername-tabs#readme",
+  "keywords": [
+    "tabs",
+    "foldernames"
+  ],
+  "license": "MIT",
+  "main": "./lib/main",
+  "name": "foldername-tabs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulpflug/foldername-tabs.git"
+  },
+  "version": "0.2.4"
+}

@@ -1,0 +1,84 @@
+{
+  "_from": "https://www.atom.io/api/packages/threshold-ui/versions/1.0.0/tarball",
+  "_id": "threshold-ui@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-VnUm3O4nLEnxELXAdMfAMNcot1lEnmACbCqnw1gQCPpUkHYVpm4vlK29fsy/6k0cYBV0YYIs9Xs70YgaR8tRaw==",
+  "_location": "/threshold-ui",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/threshold-ui/versions/1.0.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/threshold-ui/versions/1.0.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/threshold-ui/versions/1.0.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/threshold-ui/versions/1.0.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/threshold-ui/versions/1.0.0/tarball",
+  "_shasum": "eb79937a5530bc3797d109c8160a8195d47e6405",
+  "_spec": "https://www.atom.io/api/packages/threshold-ui/versions/1.0.0/tarball",
+  "_where": "C:\\Users\\Cic\\AppData\\Local\\Temp\\apm-install-dir-11946-18144-14ag5ww.nbrk",
+  "bugs": {
+    "url": "https://github.com/binaryfunt/threshold-ui/issues"
+  },
+  "bundleDependencies": false,
+  "configSchema": {
+    "fontSize": {
+      "title": "Font Size",
+      "description": "Change the UI font size. Needs to be between 8 and 20. In Auto mode, the Font Size will automatically change based on the window size.",
+      "type": [
+        "integer",
+        "string"
+      ],
+      "minimum": 8,
+      "maximum": 20,
+      "default": "Auto"
+    },
+    "layoutMode": {
+      "title": "Layout Mode",
+      "description": "In Auto mode, the UI will automatically adapt based on the window size.",
+      "type": "string",
+      "default": "Auto",
+      "enum": [
+        "Compact",
+        "Auto",
+        "Spacious"
+      ]
+    },
+    "tabSizing": {
+      "title": "Tab Sizing",
+      "description": "In minimum width mode the tabs will be as small as possible but in even width mode, all tabs will be the same size. In auto mode the tabs switch based on the window size.",
+      "type": "string",
+      "default": "Auto",
+      "enum": [
+        "Even",
+        "Auto",
+        "Minimum"
+      ]
+    }
+  },
+  "deprecated": false,
+  "description": "Dark UI theme for Atom, with a more native Windows 10 feel.",
+  "devDependencies": {
+    "coffeelint": "^1.9.7"
+  },
+  "engines": {
+    "atom": ">=1.13.0"
+  },
+  "homepage": "https://github.com/binaryfunt/threshold-ui#readme",
+  "keywords": [
+    "dark",
+    "ui"
+  ],
+  "license": "MIT",
+  "main": "lib/main",
+  "name": "threshold-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binaryfunt/threshold-ui.git"
+  },
+  "theme": "ui",
+  "version": "1.0.0"
+}

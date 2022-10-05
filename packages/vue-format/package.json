@@ -1,0 +1,60 @@
+{
+  "_from": "https://www.atom.io/api/packages/vue-format/versions/0.4.0/tarball",
+  "_id": "vue-format@0.4.0",
+  "_inBundle": false,
+  "_integrity": "sha512-SLq2vlJPJEwrDu/K06/cNXRLYx8LcMsqw2309Bkrw3i9/Un/WsWCI9+1Zp3TQKdtr6F+EEQQCIqL2KdjCevvnw==",
+  "_location": "/vue-format",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/vue-format/versions/0.4.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/vue-format/versions/0.4.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/vue-format/versions/0.4.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/vue-format/versions/0.4.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/vue-format/versions/0.4.0/tarball",
+  "_shasum": "62838c13938bbbb70e91a7e32feb6f779fac98ba",
+  "_spec": "https://www.atom.io/api/packages/vue-format/versions/0.4.0/tarball",
+  "_where": "C:\\Users\\Cic\\AppData\\Local\\Temp\\apm-install-dir-11946-12044-4cagxm.drqe8",
+  "activationCommands": {
+    "atom-workspace": "vue-format:format"
+  },
+  "author": {
+    "name": "yuqiu",
+    "email": "263352748@qq.com",
+    "url": "https://github.com/LeslieYQ"
+  },
+  "bugs": {
+    "url": "https://github.com/LeslieYQ/vue-format/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "js-beautify": "~1.5.4"
+  },
+  "deprecated": false,
+  "description": "Beautify .vue file, not suport stylus,less,scss",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/LeslieYQ/vue-format#readme",
+  "keywords": [
+    "format",
+    "vue.js",
+    "nodejs",
+    "atom",
+    "package",
+    "beautify"
+  ],
+  "license": "MIT",
+  "main": "./lib/vue-format",
+  "name": "vue-format",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeslieYQ/vue-format.git"
+  },
+  "version": "0.4.0"
+}

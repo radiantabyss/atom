@@ -1,0 +1,573 @@
+'.source.*':
+    'campaign':
+        'prefix': 'campaign'
+        'body': """
+            campaign
+        """
+
+'.source.scss':
+    'Disable code snippet':
+        'prefix': 'fantasy'
+        'disabled': true
+    'mobile':
+        'prefix': 'mobile'
+        'body': """
+            @include breakpoint(\'mobile\') {
+                $1
+            }
+        """
+    'mobile-small':
+        'prefix': 'mobile-small'
+        'body': """
+            @include breakpoint(\'mobile-small\') {
+                $1
+            }
+        """
+    'tablet':
+        'prefix': 'tablet'
+        'body': """
+            @include breakpoint(\'tablet\') {
+                $1
+            }
+        """
+    'hover':
+        'prefix': 'hover'
+        'body': """
+            &:hover, &:active, &:focus {
+                $1
+            }
+        """
+    'theme':
+        'prefix': 'theme'
+        'body': """
+            @include theme() {
+                $1
+            }
+        """
+'.php':
+    'action':
+        'prefix': 'action'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Http\\\\Request;
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use RA\\\\Core\\\\Revisioner;
+            use App\\\\Models\\\\$1 as Model;
+            use App\\\\Domains\\\\$1\\\\Filter;
+            use App\\\\Domains\\\\$1\\\\Presenter;
+            use App\\\\Domains\\\\$1\\\\Transformer;
+            use App\\\\Domains\\\\$1\\\\Validator;
+
+            class $2Action extends Action
+            {
+                public function run(Request $request) {
+
+                }
+            }
+        """
+    'action-list':
+        'prefix': 'action-list'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Http\\\\Request;
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use RA\\\\Core\\\\Filter;
+            use App\\\\Models\\\\$1 as Model;
+            use App\\\\Domains\\\\$1\\\\Presenter;
+
+            class ListAction extends Action
+            {
+                public function run(Request $request) {
+                    //get query
+                    $query = Model::query();
+
+                    //apply filters
+                    $filters = $request->all();
+                    Filter::apply($query, $filters);
+
+                    //paginate
+                    $paginated = $query->paginate(config('settings.per_page'));
+                    $items = Presenter::runMany($paginated->items());
+                    $total = $paginated->total();
+                    $pages = $paginated->lastPage();
+
+                    return Response::success(compact('items', 'total', 'pages'));
+                }
+            }
+        """
+    'action-single':
+        'prefix': 'action-single'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Http\\\\Request;
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use App\\\\Models\\\\$1 as Model;
+            use App\\\\Domains\\\\$1\\\\Presenter;
+
+            class SingleAction extends Action
+            {
+                public function run($id, Request $request) {
+                    $item = Model::find($id);
+
+                    if ( !$item ) {
+                        return Response::error(\\\\Domain::name().' not found.');
+                    }
+
+                    $item = Presenter::run($item);
+
+                    return Response::success(compact('item'));
+                }
+            }
+        """
+    'action-create':
+        'prefix': 'action-create'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Http\\\\Request;
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use RA\\\\Core\\\\Revisioner;
+            use App\\\\Models\\\\$1 as Model;
+            use App\\\\Domains\\\\$1\\\\Filter;
+            use App\\\\Domains\\\\$1\\\\Presenter;
+            use App\\\\Domains\\\\$1\\\\Transformer;
+            use App\\\\Domains\\\\$1\\\\Validator;
+
+            class CreateAction extends Action
+            {
+                public function run(Request $request) {
+                    $data = $request->all();
+
+                    //validate request
+                    $validation = Validator::run($data);
+                    if ( $validation !== true ) {
+                        return Response::error($validation);
+                    }
+
+                    $data = Transformer::run($data);
+                    $item = Model::create($data);
+                    $item = Presenter::run($item);
+
+                    return Response::success(compact('item'));
+                }
+            }
+        """
+    'action-update':
+        'prefix': 'action-update'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Http\\\\Request;
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use App\\\\Models\\\\$1 as Model;
+            use App\\\\Domains\\\\$1\\\\Presenter;
+            use App\\\\Domains\\\\$1\\\\Transformer;
+            use App\\\\Domains\\\\$1\\\\Validator;
+
+            class UpdateAction extends Action
+            {
+                public function run($id, Request $request) {
+                    $data = $request->all();
+
+                    //validate request
+                    $validation = Validator::run($data);
+                    if ( $validation !== true ) {
+                        return Response::error($validation);
+                    }
+
+                    $data = Transformer::run($data);
+                    Model::where('id', $id)->update($data);
+
+                    $item = Model::find($id);
+                    $item = Presenter::run($item);
+
+                    return Response::success(compact('item'));
+                }
+            }
+        """
+    'action-delete':
+        'prefix': 'action-delete'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Http\\\\Request;
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use App\\\\Models\\\\$1 as Model;
+
+            class DeleteAction extends Action
+            {
+                public function run($id, Request $request) {
+                    $item = Model::find($id);
+
+                    if ( !$item ) {
+                        return Response::error(\\\\Domain::name().' not found.');
+                    }
+
+                    $item->delete();
+
+                    return Response::success();
+                }
+            }
+        """
+    'model':
+        'prefix': 'model'
+        'body': """
+            <?php
+            namespace App\\\\Models;
+
+            class $1 extends Model
+            {
+                protected $table = '$2';
+            }
+        """
+    'presenter':
+        'prefix': 'presenter'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1;
+
+            class Presenter
+            {
+                public static function run($item) {
+                    return $item;
+                }
+
+                public static function runMany($items) {
+                    return $items;
+                }
+            }
+        """
+    'transformer':
+        'prefix': 'transformer'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1;
+
+            class Transformer
+            {
+                public static function run($data) {
+                    return $data;
+                }
+            }
+        """
+    'validation':
+        'prefix': 'validation'
+        'body': """
+            //validate request
+            $validation = Validator::run($data);
+            if ( $validation !== true ) {
+                return Response::error($validation);
+            }
+        """
+    'validator':
+        'prefix': 'validator'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1;
+
+            use App\\\\Models\\\\$1 as Model;
+
+            class $2Validator
+            {
+                public static function run($data, $id = false) {
+                    //check if item exists
+                    if ( $id ) {
+                        $item = Model::find($id);
+                        if ( !$item ) {
+                            return to_words(\\\\Action::namespace()).' not found.';
+                        }
+                    }
+
+                    //validate request params
+                    $validator = \\\\Validator::make($data, [
+                        '$3name' => 'required',
+                    ], [
+                        '$4name.required' => 'Name is required',
+                    ]);
+
+                    if ( $validator->fails() ) {
+                        return $validator->messages();
+                    }
+
+                    return true;
+                }
+            }
+        """
+    'validate':
+        'prefix': 'validate'
+        'body': """
+            //validate request params
+            $validator = \\\\Validator::make($data, [
+                '$1id' => 'required',
+            ], [
+                'id.required' => 'ID is required',
+            ]);
+
+            if ( $validator->fails() ) {
+                return $validator->messages();
+            }
+        """
+    'job':
+        'prefix': 'job'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1;
+
+            use App\\\\Jobs\\\\Job;
+
+            class $2Job extends Job
+            {
+                public function handle() {
+                    $3
+                }
+            }
+
+        """
+    'command':
+        'prefix': 'command'
+        'body': """
+            <?php
+            namespace App\\\\Console\\\\Commands;
+
+            use Illuminate\\\\Console\\\\Command;
+
+            class $1Command extends Command
+            {
+                /**
+                 * The name and signature of the console command.
+                 *
+                 * @var string
+                 */
+                protected $signature = '';
+
+                /**
+                 * The console command description.
+                 *
+                 * @var string
+                 */
+                protected $description = '';
+
+                /**
+                 * Execute the console command.
+                 *
+                 * @return mixed
+                 */
+                public function handle()
+                {
+
+                }
+            }
+
+        """
+
+'.source.js':
+    'module':
+        'prefix': 'module'
+        'body': """
+            export default {
+                namespaced: true,
+                state: {
+
+                },
+                actions: {
+
+                },
+                mutations: {
+
+                },
+            }
+        """
+    'middleware':
+        'prefix': 'middleware'
+        'body': """
+            import Store from '@lumi/Store';
+
+            const $1Middleware = function() {
+                return new Promise((resolve, reject) => {
+                    $2
+                });
+            }
+
+            export default $1Middleware;
+        """
+    'transformer':
+        'prefix': 'transformer'
+        'body': """
+            const $1Transformer = {
+                run(data) {
+                    return data;
+                }
+            }
+
+            export default $1Transformer;
+        """
+
+'.vue':
+    'route':
+        'prefix': 'route'
+        'body': """
+            <router-link to="$1"></router-link>
+        """
+    'router-link':
+        'prefix': 'router-link'
+        'body': """
+            <router-link to="$1"></router-link>
+        """
+    'action':
+        'prefix': 'action'
+        'body': """
+            <script>
+            export default {
+                data() {
+                    return {
+
+                    }
+                },
+                methods: {
+
+                },
+                mounted() {
+
+                },
+            }
+            </script>
+
+            <template>
+            <div>
+
+            </div>
+            </template>
+        """
+    'form':
+        'prefix': 'form'
+        'body': """
+            <script>
+            export default {
+                name: 'Form',
+                props: {
+                    item: {
+                        type: Object,
+                        required: false,
+                        default: null,
+                    }
+                },
+                data() {
+                    return {
+                        fields: {},
+                    }
+                },
+                methods: {
+                    submit(e) {
+                        let url;
+
+                        if ( this.item ) {
+                            url = `/${Domain.get()}/update/${this.item.id}`;
+                        }
+                        else {
+                            url = `/${Domain.get()}/create`;
+                        }
+
+                        this.fields._event = e;
+
+                        Request.post(url, this.fields, true)
+                        .then(() => {
+                            this.$router.push(`/${Domain.get()}`);
+                        });
+                    },
+                },
+                mounted() {
+                    setTimeout(function() {
+                        document.getElementsByTagName('input')[0].focus();
+                    }, 150);
+
+                    if ( this.item ) {
+                        this.fields = {...this.item};
+                    }
+                },
+            }
+            </script>
+
+            <template>
+            <form>
+                <div class="row">
+                    <label></label>
+                    <input type="text" class="input" v-model="" />
+                </div>
+                <div class="row row--nm">
+                    <button type="submit" @click.prevent="submit" class="btn">Save</button>
+                </div>
+            </form>
+            </template>
+        """
+    'component':
+        'prefix': 'component'
+        'body': """
+            <script>
+            export default {
+                name: '$1Component',
+                props: {
+
+                },
+                data() {
+                    return {
+
+                    }
+                },
+                computed: {
+
+                },
+                methods: {
+
+                },
+                mounted() {
+
+                },
+            }
+            </script>
+
+            <template>
+            <div>
+
+            </div>
+            </template>
+        """
+    'partial':
+        'prefix': 'partial'
+        'body': """
+            <script>
+            export default {
+                name: '$1',
+            }
+            </script>
+
+            <template>
+            <div>
+
+            </div>
+            </template>
+        """
+    'checkboxes':
+        'prefix': 'checkboxes'
+        'body': """
+            <div class="flex ms--10">
+                <label class="input-radio ms-10" v-for="(value, text) in yes_no" :key="value">
+                    <input type="radio" v-model="$1" :value="value" :checked="value == $2 ? 'checked' : ''" />
+                    <span>{{ text | ucwords }}</span>
+                </label>
+            </div>
+        """
