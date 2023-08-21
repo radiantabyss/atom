@@ -3,9 +3,10 @@
     executables:
       php: {}
       "php-cs-fixer":
-        path: "C:\\Programs\\php-cs-fixer\\vendor\\bin\\php-cs-fixer.bat"
+        path: "G:\\Programs\\php-cs-fixer\\vendor\\bin\\php-cs-fixer.bat"
     general:
       _analyticsUserId: "40e5ad1a-7d8e-4d11-92fb-a722651cfaa5"
+    php: {}
   "atom-ignore": {}
   core:
     disabledPackages: [
@@ -36,12 +37,14 @@
     userId: "4d6b83ca-1e9b-40e2-abbe-9c74650e76a8"
   "foldername-tabs":
     maxLength: 1
+  "git-diff": {}
   "git-history":
     showDiff: false
   "smart-tab-name": {}
   "tab-foldername-index": {}
   welcome:
     showOnStartup: false
+    showSunsettingOnStartup: false
 ".blade.html.php.text":
   editor:
     commentEnd: " --}}"

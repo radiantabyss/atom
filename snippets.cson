@@ -12,7 +12,7 @@
     'mobile':
         'prefix': 'mobile'
         'body': """
-            @include breakpoint(\'mobile\') {
+            @include breakpoint(\'m\') {
                 $1
             }
         """
@@ -51,19 +51,34 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
-            use Illuminate\\\\Http\\\\Request;
             use Illuminate\\\\Routing\\\\Controller as Action;
             use RA\\\\Core\\\\Response;
-            use RA\\\\Core\\\\Revisioner;
-            use App\\\\Models\\\\$1 as Model;
-            use App\\\\Domains\\\\$1\\\\Filter;
-            use App\\\\Domains\\\\$1\\\\Presenter;
-            use App\\\\Domains\\\\$1\\\\Transformer;
-            use App\\\\Domains\\\\$1\\\\Validator;
+            use App\\\\Models as Model;
 
             class $2Action extends Action
             {
-                public function run(Request $request) {
+                public function run() {
+
+                }
+            }
+        """
+    'action-admin':
+        'prefix': 'action-admin'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use App\\\\Models as Model;
+            use App\\\\Domains\\\\$1\\\\Filters\\\\Filter;
+            use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
+            use App\\\\Domains\\\\$1\\\\Transformers\\\\Transformer;
+            use App\\\\Domains\\\\$1\\\\Validators\\\\Validator;
+
+            class $2Action extends Action
+            {
+                public function run() {
 
                 }
             }
@@ -74,26 +89,25 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
-            use Illuminate\\\\Http\\\\Request;
             use Illuminate\\\\Routing\\\\Controller as Action;
             use RA\\\\Core\\\\Response;
             use RA\\\\Core\\\\Filter;
-            use App\\\\Models\\\\$1 as Model;
-            use App\\\\Domains\\\\$1\\\\Presenter;
+            use App\\\\Models as Model;
+            use App\\\\Domains\\\\$1\\\\Presenters\\\\ListPresenter;
 
             class ListAction extends Action
             {
-                public function run(Request $request) {
+                public function run() {
                     //get query
-                    $query = Model::query();
+                    $query = Model\\\\$1::query();
 
                     //apply filters
-                    $filters = $request->all();
+                    $filters = \\\\Request::all();
                     Filter::apply($query, $filters);
 
                     //paginate
                     $paginated = $query->paginate(config('settings.per_page'));
-                    $items = Presenter::runMany($paginated->items());
+                    $items = ListPresenter::run($paginated->items());
                     $total = $paginated->total();
                     $pages = $paginated->lastPage();
 
@@ -107,16 +121,15 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
-            use Illuminate\\\\Http\\\\Request;
             use Illuminate\\\\Routing\\\\Controller as Action;
             use RA\\\\Core\\\\Response;
-            use App\\\\Models\\\\$1 as Model;
-            use App\\\\Domains\\\\$1\\\\Presenter;
+            use App\\\\Models as Model;
+            use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
 
             class SingleAction extends Action
             {
-                public function run($id, Request $request) {
-                    $item = Model::find($id);
+                public function run($id) {
+                    $item = Model\\\\$1::find($id);
 
                     if ( !$item ) {
                         return Response::error(\\\\Domain::name().' not found.');
@@ -134,20 +147,17 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
-            use Illuminate\\\\Http\\\\Request;
             use Illuminate\\\\Routing\\\\Controller as Action;
             use RA\\\\Core\\\\Response;
-            use RA\\\\Core\\\\Revisioner;
-            use App\\\\Models\\\\$1 as Model;
-            use App\\\\Domains\\\\$1\\\\Filter;
-            use App\\\\Domains\\\\$1\\\\Presenter;
-            use App\\\\Domains\\\\$1\\\\Transformer;
-            use App\\\\Domains\\\\$1\\\\Validator;
+            use App\\\\Models as Model;
+            use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
+            use App\\\\Domains\\\\$1\\\\Transformers\\\\Transformer;
+            use App\\\\Domains\\\\$1\\\\Validators\\\\Validator;
 
             class CreateAction extends Action
             {
                 public function run(Request $request) {
-                    $data = $request->all();
+                    $data = \\\\Request::all();
 
                     //validate request
                     $validation = Validator::run($data);
@@ -156,8 +166,34 @@
                     }
 
                     $data = Transformer::run($data);
-                    $item = Model::create($data);
+                    $item = Model\\\\$1::create($data);
                     $item = Presenter::run($item);
+
+                    return Response::success(compact('item'));
+                }
+            }
+        """
+    'action-edit':
+        'prefix': 'action-edit'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use App\\\\Models as Model;
+            use App\\\\Domains\\\\$1\\\\Presenters\\\\EditPresenter;
+
+            class EditAction extends Action
+            {
+                public function run($id) {
+                    $item = Model\\\\$1::find($id);
+
+                    if ( !$item ) {
+                        return Response::error(\\\\Domain::name().' not found.');
+                    }
+
+                    $item = EditPresenter::run($item);
 
                     return Response::success(compact('item'));
                 }
@@ -169,18 +205,17 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
-            use Illuminate\\\\Http\\\\Request;
             use Illuminate\\\\Routing\\\\Controller as Action;
             use RA\\\\Core\\\\Response;
-            use App\\\\Models\\\\$1 as Model;
-            use App\\\\Domains\\\\$1\\\\Presenter;
-            use App\\\\Domains\\\\$1\\\\Transformer;
-            use App\\\\Domains\\\\$1\\\\Validator;
+            use App\\\\Models as Model;
+            use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
+            use App\\\\Domains\\\\$1\\\\Transformers\\\\Transformer;
+            use App\\\\Domains\\\\$1\\\\Validators\\\\Validator;
 
             class UpdateAction extends Action
             {
-                public function run($id, Request $request) {
-                    $data = $request->all();
+                public function run($id) {
+                    $data = \\\\Request::all();
 
                     //validate request
                     $validation = Validator::run($data);
@@ -191,7 +226,41 @@
                     $data = Transformer::run($data);
                     Model::where('id', $id)->update($data);
 
-                    $item = Model::find($id);
+                    $item = Model\\\\$1::find($id);
+                    $item = Presenter::run($item);
+
+                    return Response::success(compact('item'));
+                }
+            }
+        """
+    'action-patch':
+        'prefix': 'action-patch'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Actions;
+
+            use Illuminate\\\\Routing\\\\Controller as Action;
+            use RA\\\\Core\\\\Response;
+            use App\\\\Models as Model;
+            use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
+            use App\\\\Domains\\\\$1\\\\Transformers\\\\PatchTransformer;
+            use App\\\\Domains\\\\$1\\\\Validators\\\\PatchValidator;
+
+            class PatchAction extends Action
+            {
+                public function run($id) {
+                    $data = \\\\Request::all();
+
+                    //validate request
+                    $validation = PatchValidator::run($data);
+                    if ( $validation !== true ) {
+                        return Response::error($validation);
+                    }
+
+                    $data = PatchTransformer::run($data);
+                    Model::where('id', $id)->update($data);
+
+                    $item = Model\\\\$1::find($id);
                     $item = Presenter::run($item);
 
                     return Response::success(compact('item'));
@@ -204,15 +273,14 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
-            use Illuminate\\\\Http\\\\Request;
             use Illuminate\\\\Routing\\\\Controller as Action;
             use RA\\\\Core\\\\Response;
-            use App\\\\Models\\\\$1 as Model;
+            use App\\\\Models as Model;
 
             class DeleteAction extends Action
             {
-                public function run($id, Request $request) {
-                    $item = Model::find($id);
+                public function run($id) {
+                    $item = Model\\\\$1::find($id);
 
                     if ( !$item ) {
                         return Response::error(\\\\Domain::name().' not found.');
@@ -239,24 +307,46 @@
         'prefix': 'presenter'
         'body': """
             <?php
-            namespace App\\\\Domains\\\\$1;
+            namespace App\\\\Domains\\\\$1\\\\Presenters;
 
             class Presenter
             {
                 public static function run($item) {
                     return $item;
                 }
+            }
+        """
+    'presenter-list':
+        'prefix': 'presenter-list'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Presenters;
 
-                public static function runMany($items) {
+            class ListPresenter
+            {
+                public static function run($items) {
                     return $items;
                 }
+            }
+        """
+    'filter':
+        'prefix': 'filter'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Filters;
+
+            use RA\\\\Core\\\\Filter as RA_Filter;
+
+            class Filter
+            {
+                use RA_Filter;
             }
         """
     'transformer':
         'prefix': 'transformer'
         'body': """
             <?php
-            namespace App\\\\Domains\\\\$1;
+            namespace App\\\\Domains\\\\$1\\\\Transformers;
 
             class Transformer
             {
@@ -278,9 +368,9 @@
         'prefix': 'validator'
         'body': """
             <?php
-            namespace App\\\\Domains\\\\$1;
+            namespace App\\\\Domains\\\\$1\\\\Validators;
 
-            use App\\\\Models\\\\$1 as Model;
+            use App\\\\Models as Model;
 
             class $2Validator
             {
@@ -289,7 +379,7 @@
                     if ( $id ) {
                         $item = Model::find($id);
                         if ( !$item ) {
-                            return to_words(\\\\Action::namespace()).' not found.';
+                            return \\\\Domain::name().' not found.';
                         }
                     }
 
@@ -326,9 +416,9 @@
         'prefix': 'job'
         'body': """
             <?php
-            namespace App\\\\Domains\\\\$1;
+            namespace App\\\\Domains\\\\$1\\\\Jobs;
 
-            use App\\\\Jobs\\\\Job;
+            use RA\\\\Core\\\\Job;
 
             class $2Job extends Job
             {
@@ -342,37 +432,55 @@
         'prefix': 'command'
         'body': """
             <?php
+            namespace App\\\\Domains\\\\$1\\\\Commands;
+
+            use Illuminate\\\\Console\\\\Command;
+
+            class $2Command extends Command
+            {
+                protected $signature = '$3';
+                protected $description = '$4';
+
+                public function handle() {
+                    $5
+                }
+            }
+        """
+    'command-console':
+        'prefix': 'command-console'
+        'body': """
+            <?php
             namespace App\\\\Console\\\\Commands;
 
             use Illuminate\\\\Console\\\\Command;
 
             class $1Command extends Command
             {
-                /**
-                 * The name and signature of the console command.
-                 *
-                 * @var string
-                 */
-                protected $signature = '';
+                protected $signature = '$2';
+                protected $description = '$3';
 
-                /**
-                 * The console command description.
-                 *
-                 * @var string
-                 */
-                protected $description = '';
-
-                /**
-                 * Execute the console command.
-                 *
-                 * @return mixed
-                 */
-                public function handle()
-                {
-
+                public function handle() {
+                    $4
                 }
             }
+        """
+    'mail':
+        'prefix': 'mail'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Mail;
 
+            use RA\\\\Core\\\\Mail;
+
+            class $2Mail extends Mail
+            {
+                public function build() {
+                    return $this->subject('$3')
+                        ->view('AppDomains::$1.Mail.views.$2', [
+                            $4
+                        ]);
+                }
+            }
         """
 
 '.source.js':
@@ -397,13 +505,11 @@
         'body': """
             import Store from '@lumi/Store';
 
-            const $1Middleware = function() {
+            export default function() {
                 return new Promise((resolve, reject) => {
-                    $2
+                    $1
                 });
             }
-
-            export default $1Middleware;
         """
     'transformer':
         'prefix': 'transformer'
@@ -559,6 +665,32 @@
             <div>
 
             </div>
+            </template>
+        """
+    'modal':
+        'prefix': 'modal'
+        'body': """
+            <script>
+            export default {
+                name: '$1Modal',
+                data() {
+                    return {
+                        name: '$2',
+                    }
+                },
+            }
+            </script>
+
+            <template>
+            <modal :name="name" classes="modal modal--small">
+                <a @click="$modal.hide(name)" class="modal__close">
+                    <sprite id="x" class="small" />
+                </a>
+
+                <div class="modal__content">
+
+                </div>
+            </modal>
             </template>
         """
     'checkboxes':
