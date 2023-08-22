@@ -17,3 +17,6 @@
     'ctrl-alt-2': 'editor:fold-at-indent-level-2'
     'ctrl-alt-3': 'editor:fold-at-indent-level-3'
     'ctrl-alt-`': 'editor:unfold-all'
+
+'.tree-view':
+  'shift-delete': 'tree-view:remove'

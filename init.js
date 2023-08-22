@@ -1,3 +1,6 @@
+atom.contextMenu.itemSets[35].items[5].command = 'permanent-delete:delete';
+atom.contextMenu.itemSets[41].items[0].command = 'permanent-delete:delete';
+
 atom.commands.add('atom-text-editor', {
     'custom:get-path': () => {
         let editor = atom.workspace.getActiveTextEditor();
