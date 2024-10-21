@@ -12,7 +12,7 @@
     'mobile':
         'prefix': 'mobile'
         'body': """
-            @include breakpoint(\'m\') {
+            @include breakpoint(\'mobile\') {
                 $1
             }
         """
@@ -52,13 +52,13 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Response;
             use App\\\\Models as Model;
 
             class $2Action extends Action
             {
                 public function run() {
-
+                    $3
                 }
             }
         """
@@ -69,7 +69,7 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Response;
             use App\\\\Models as Model;
             use App\\\\Domains\\\\$1\\\\Filters\\\\Filter;
             use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
@@ -90,8 +90,8 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
-            use RA\\\\Core\\\\Filter;
+            use Lumi\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Filter;
             use App\\\\Models as Model;
             use App\\\\Domains\\\\$1\\\\Presenters\\\\ListPresenter;
 
@@ -122,7 +122,7 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Response;
             use App\\\\Models as Model;
             use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
 
@@ -148,7 +148,7 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Response;
             use App\\\\Models as Model;
             use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
             use App\\\\Domains\\\\$1\\\\Transformers\\\\Transformer;
@@ -180,7 +180,7 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Response;
             use App\\\\Models as Model;
             use App\\\\Domains\\\\$1\\\\Presenters\\\\EditPresenter;
 
@@ -206,7 +206,7 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Response;
             use App\\\\Models as Model;
             use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
             use App\\\\Domains\\\\$1\\\\Transformers\\\\Transformer;
@@ -240,7 +240,7 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Response;
             use App\\\\Models as Model;
             use App\\\\Domains\\\\$1\\\\Presenters\\\\Presenter;
             use App\\\\Domains\\\\$1\\\\Transformers\\\\PatchTransformer;
@@ -274,7 +274,7 @@
             namespace App\\\\Domains\\\\$1\\\\Actions;
 
             use Illuminate\\\\Routing\\\\Controller as Action;
-            use RA\\\\Core\\\\Response;
+            use Lumi\\\\Core\\\\Response;
             use App\\\\Models as Model;
 
             class DeleteAction extends Action
@@ -289,6 +289,21 @@
                     $item->delete();
 
                     return Response::success();
+                }
+            }
+        """
+    'operation':
+        'prefix': 'operation'
+        'body': """
+            <?php
+            namespace App\\\\Domains\\\\$1\\\\Operations;
+
+            use App\\\\Models as Model;
+
+            class $2Operation
+            {
+                public static function run() {
+
                 }
             }
         """
@@ -309,7 +324,7 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Presenters;
 
-            class Presenter
+            class $2Presenter
             {
                 public static function run($item) {
                     return $item;
@@ -335,7 +350,7 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Filters;
 
-            use RA\\\\Core\\\\Filter as RA_Filter;
+            use Lumi\\\\Core\\\\Filter as RA_Filter;
 
             class Filter
             {
@@ -348,7 +363,7 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Transformers;
 
-            class Transformer
+            class $2Transformer
             {
                 public static function run($data) {
                     return $data;
@@ -377,7 +392,7 @@
                 public static function run($data, $id = false) {
                     //check if item exists
                     if ( $id ) {
-                        $item = Model::find($id);
+                        $item = Model\\\\$3::find($id);
                         if ( !$item ) {
                             return \\\\Domain::name().' not found.';
                         }
@@ -385,9 +400,9 @@
 
                     //validate request params
                     $validator = \\\\Validator::make($data, [
-                        '$3name' => 'required',
+                        '$4name' => 'required',
                     ], [
-                        '$4name.required' => 'Name is required',
+                        '$5name' => 'Name is required',
                     ]);
 
                     if ( $validator->fails() ) {
@@ -405,7 +420,7 @@
             $validator = \\\\Validator::make($data, [
                 '$1id' => 'required',
             ], [
-                'id.required' => 'ID is required',
+                'id' => 'ID is required',
             ]);
 
             if ( $validator->fails() ) {
@@ -418,7 +433,7 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Jobs;
 
-            use RA\\\\Core\\\\Job;
+            use Lumi\\\\Core\\\\Job;
 
             class $2Job extends Job
             {
@@ -470,7 +485,7 @@
             <?php
             namespace App\\\\Domains\\\\$1\\\\Mail;
 
-            use RA\\\\Core\\\\Mail;
+            use Lumi\\\\Core\\\\Mail;
 
             class $2Mail extends Mail
             {

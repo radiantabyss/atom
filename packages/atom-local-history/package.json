@@ -1,0 +1,34 @@
+{
+  "name": "local-history",
+  "main": "./lib/local-history",
+  "version": "4.3.1",
+  "description": "Maintaining local history of files (history of your changes to the code files).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nicolab/atom-local-history"
+  },
+  "bugs": {
+    "url": "https://github.com/Nicolab/atom-local-history/issues"
+  },
+  "author": {
+    "name": "Nicolas Tallefourtane",
+    "url": "http://nicolab.net"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/Nicolab/atom-local-history/blob/master/LICENSE.md"
+    }
+  ],
+  "engines": {
+    "atom": ">0.192.0"
+  },
+  "dependencies": {
+    "atom-helpers": "^1.1.4",
+    "atom-message-panel": "^1.2.2",
+    "atom-space-pen-views": "^2.0.5",
+    "bluebird": "^2.9.24",
+    "fs-plus": "^2.7.0",
+    "humanize-plus": "^1.5.0"
+  }
+}
