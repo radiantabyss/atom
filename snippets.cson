@@ -499,6 +499,116 @@
         """
 
 '.source.js':
+    'action':
+        'prefix': 'action'
+        'body': """
+            let self = {
+                async run() {
+
+                },
+            }
+
+            export default self;
+        """
+    'presenter':
+        'prefix': 'presenter'
+        'body': """
+            let self = {
+                run(item) {
+                    return item;
+                },
+            }
+
+            export default self;
+        """
+    'presenter-list':
+        'prefix': 'presenter-list'
+        'body': """
+            let self = {
+                run(items) {
+                    return items;
+                },
+            }
+
+            export default self;
+        """
+    'transformer':
+        'prefix': 'transformer'
+        'body': """
+            let self = {
+                run(data) {
+                    return data;
+                },
+            }
+
+            export default self;
+        """
+    'validator':
+        'prefix': 'validator'
+        'body': """
+            let self = {
+                run(data, id = null) {
+                    //check if item exists
+                    if ( id ) {
+                        let item = Model.$1.find();
+                        if ( !item ) {
+                            return `$2 not found.`;
+                        }
+                    }
+
+                    //validate request params
+                    let validation = Validator.make(data, {
+                        'name': 'required',
+                    }, {
+                        'name.required': 'Name is required.',
+                    });
+
+                    if ( !validation.passes() ) {
+                        return validation.messages();
+                    }
+
+                    return true;
+                },
+            }
+
+            export default self;
+        """
+    'validate':
+        'prefix': 'validate'
+        'body': """
+            //validate request params
+            let validation = Validator.make(data, {
+                'name': 'required',
+            }, {
+                'name.required': 'Name is required.',
+            });
+
+            if ( !validation.passes() ) {
+                return validation.messages();
+            }
+        """
+    'validation':
+        'prefix': 'validation'
+        'body': """
+            //validate request
+            let validation = Validator.run(data);
+            if ( validation !== true ) {
+                return Response.error(validation);
+            }
+        """
+    'context-menu':
+        'prefix': 'context-menu'
+        'body': """
+            export default function(win) {
+                return {
+                    label: '$1',
+                    visible: true,
+                    click: () => {
+                        $2
+                    }
+                }
+            }
+        """
     'module':
         'prefix': 'module'
         'body': """
@@ -526,18 +636,6 @@
                 });
             }
         """
-    'transformer':
-        'prefix': 'transformer'
-        'body': """
-            const $1Transformer = {
-                run(data) {
-                    return data;
-                }
-            }
-
-            export default $1Transformer;
-        """
-
 '.vue':
     'route':
         'prefix': 'route'
